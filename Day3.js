@@ -26,12 +26,60 @@ function bouncer(arr) {
    */ 
 
   function getIndexToIns(arr, num) {
-        let sorted = arr.sort((a,b) => a-b);
-        let newarr = sorted.filter((x) =>{
-            if(x <= num){
-                return x;
-            }
-            });
-        
-        return newarr.length;
-  }
+    let sorted = arr.sort((a,b) => a-b);
+    let newArr = sorted.filter((x) => {
+        if(x < num){
+            return x;
+        }
+    });
+    if(sorted.includes(num) === true){
+        let position = sorted.indexOf(num);
+        return position;
+    } else {
+        return newArr.length;
+    }
+    
+}
+
+/* #3
+  Return true if the string in the first element of the array contains all of the letters 
+  of the string in the second element of the array.
+    For example, ["hello", "Hello"], 
+    should return true because all of the letters in the second string are present in the 
+    first, ignoring case.   
+*/
+function mutation(arr) {
+let str1 = arr[0];
+let str2 = arr[1];
+let arr1 = str1.split('').map((x) => x.toLowerCase());
+let arr2 = str2.split('').map((x) => x.toLowerCase());
+let arr3 = [];
+for (let i=0; i<arr1.length; i++){
+    for(let j=0; j<arr2.length; j++){
+        if(arr1.includes(arr2[j])){
+            arr3.push(true);
+        } else {
+            arr3.push(false);
+        }
+    }
+}
+if(arr3.includes(false) === true){
+    return false;
+} else {
+    return true;
+}
+
+}
+
+/* #4
+Write a function that splits an array (first argument) into groups 
+the length of size (second argument) and returns them as a two-dimensional array.
+*/
+
+function chunkArrayInGroups(arr, size) {
+let arr2 = [];
+while(arr.length) {
+arr2.push(arr.splice(0,size));
+}
+return arr2;
+}
